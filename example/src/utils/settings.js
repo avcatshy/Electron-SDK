@@ -1,4 +1,4 @@
-export const APP_ID = 'YOUR_APPID'
+export const APP_ID = ''
 
 export const videoProfileList = [
   {
