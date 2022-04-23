@@ -1,0 +1,61 @@
+{
+  "name": "electron-webpack-quick-start",
+  "version": "0.0.0",
+  "license": "MIT",
+  "scripts": {
+    "dev": "electron-webpack dev",
+    "compile": "electron-webpack",
+    "write-config": "node ./scripts/writeAppId.js",
+    "dist": "npm run compile && electron-builder",
+    "dist:dir": "npm run dist --dir -c.compression=store -c.mac.identity=null"
+  },
+  "build": {
+    "asar": false,
+    "appId": "io.agora.wayang.electron",
+    "win": {
+      "target": [
+        {
+          "target": "zip",
+          "arch": [
+            "ia32"
+          ]
+        }
+      ]
+    },
+    "mac": {
+      "hardenedRuntime": true,
+      "entitlements": "entitlements/entitlements.mac.plist",
+      "entitlementsInherit": "entitlements/entitlements.mac.plist",
+      "gatekeeperAssess": false,
+      "extendInfo": {
+        "NSCameraUsageDescription": "Request camera usage",
+        "NSMicrophoneUsageDescription": "Request mic usage"
+      }
+    },
+    "npmRebuild": false,
+    "publish": null
+  },
+  "dependencies": {
+    "bulma": "^0.7.1",
+    "immutable": "^3.8.2",
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2",
+    "source-map-support": "^0.5.9"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/preset-react": "^7.0.0",
+    "electron": "12.0.0",
+    "electron-builder": "21.2.0",
+    "electron-webpack": "^2.7.4",
+    "webpack": "^4.39.2"
+  },
+  "resolutions": {
+    "electron-rebuild": "1.0.1"
+  },
+  "electronWebpack": {
+    "renderer": {
+      "webpackConfig": "webpack.renderer.additions.js"
+    }
+  }
+}
